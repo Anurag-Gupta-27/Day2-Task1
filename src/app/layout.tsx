@@ -1,22 +1,18 @@
 import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import './globals.css'
+import { Inter } from 'next/font/google'
+import Header from '../components/header'
+const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body>
-          <header>
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
-          <main>{children}</main>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html>
+      <body className={inter.className}>
+        <ClerkProvider>
+          <Header />
+          {children}
+        </ClerkProvider>
+      </body>
+    </html>
   )
 }
